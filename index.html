@@ -66,9 +66,6 @@
         const ChevronDown = (props) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polyline points="6 9 12 15 18 9"></polyline></svg>
         );
-        const MapPin = (props) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        );
         const BookOpen = (props) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
         );
@@ -102,84 +99,174 @@
 
             const levelsData = [
                 {
-                level: 1,
-                title: "Jago Bersosialisasi",
-                focus: "Anak nyaman berkenalan, membuka percakapan, & percaya diri.",
-                color: "bg-yellow-100 border-yellow-400 text-yellow-900",
-                btnColor: "bg-yellow-200 hover:bg-yellow-300 text-yellow-900",
-                icon: <Smile className="w-6 h-6 text-yellow-700" />,
-                syllabus: [
-                    "Teman-Teman Baruku", "Kontak Mata", "Sapaan Ramah", "Berani Berkenalan", 
-                    "Roleplay Kenalan", "Review & Practice", "Topik Ringan", "Ask & Listen", 
-                    "Rotasi Obrolan", "Gestur & Postur", "Flow & Vibe", "Simulasi Gerak Tubuh", 
-                    "Obrolan Berkelompok", "Masuk Lingkaran", "Group Game", "Mengenal Berbagai Perasaan", 
-                    "Tidak & Tolong", "Simulasi Hari Pertama Sekolah", "Project Planning", "Mini Presentation", 
-                    "Praktik Menjawab", "Gladi Resik 1", "Gladi Resik 2", "SHOWCASE DAY"
-                ]
+                    level: 1,
+                    title: "Jago Bersosialisasi",
+                    focus: "Anak nyaman berkenalan, membuka percakapan, & percaya diri.",
+                    color: "bg-yellow-100 border-yellow-400 text-yellow-900",
+                    btnColor: "bg-yellow-200 hover:bg-yellow-300 text-yellow-900",
+                    icon: <Smile className="w-6 h-6 text-yellow-700" />,
+                    syllabus: [
+                        { topic: "Teman-Teman Baruku", objective: "Mampu mengenal teman baru & observasi awal.", activity: "Perkenalan diri, aturan kelas, menyanyi & yel-yel seru." },
+                        { topic: "Kontak Mata", objective: "Mengajarkan kontak mata sebagai tanda percaya diri.", activity: "Game 'Tebak Siapa?', Materi posisi berdiri, Praktik menyapa." },
+                        { topic: "Sapaan Ramah", objective: "Siswa mampu menyapa temannya dengan ramah.", activity: "Praktik 'The Magic Hello' (3 nada: lemas, marah, ceria)." },
+                        { topic: "Berani Berkenalan", objective: "Siswa mampu memperkenalkan diri dengan percaya diri.", activity: "Praktik 'Hi-Five Station', Tos dengan teman sambil menyapa." },
+                        { topic: "Roleplay Kenalan", objective: "Siswa berani berkenalan dengan orang baru.", activity: "Lingkaran Senyum: Berputar & berkenalan. Find 3 Friends." },
+                        { topic: "Review & Practice", objective: "Siswa mampu memperkenalkan diri di depan teman.", activity: "Simulasi 'New Friend Hunt' di taman imajiner & Park Simulation." },
+                        { topic: "Topik Ringan", objective: "Mampu mencari bahan obrolan ringan.", activity: "First Impression Show, Materi Small Talk." },
+                        { topic: "Ask & Listen", objective: "Mampu bertanya sederhana & mendengar respon.", activity: "Game 'Topic Spinner', 'What's in the Box?' menebak benda." },
+                        { topic: "Rotasi Obrolan", objective: "Berlatih lancar berbicara dengan berbagai teman.", activity: "Smart Questioner (Tanya 'Kenapa?'), Echo Game (Mengulang kata)." },
+                        { topic: "Gestur & Postur", objective: "Mempraktikkan posisi tangan & tubuh terbuka.", activity: "Speed Chatting (Pindah kursi tiap 2 menit), Talk & Switch." },
+                        { topic: "Flow & Vibe", objective: "Demonstrasi percakapan dengan gestur & ekspresi.", activity: "Hand Motion (Gerak tangan), Friendly Posture Walk." },
+                        { topic: "Simulasi Gerak Tubuh", objective: "Demonstrasi sapaan menggunakan seluruh tubuh.", activity: "Paket Komplit (Vokal & Gesture), Vibe Check (Peer assessment)." },
+                        { topic: "Obrolan Berkelompok", objective: "Memahami cara bergabung ke obrolan kelompok.", activity: "Simulasi 'The Busy Street' & 'Greeting Roulette'." },
+                        { topic: "Masuk Lingkaran", objective: "Praktik bergabung tanpa rasa takut.", activity: "Materi 'Ruang Pintu', Observing Eyes (Celah masuk)." },
+                        { topic: "Group Game", objective: "Demonstrasi komunikasi saat main bareng.", activity: "Circle Entry (Masuk lingkaran), Permission Play (Izin gabung)." },
+                        { topic: "Mengenal Berbagai Perasaan", objective: "Menyampaikan emosi/perasaan secara sopan.", activity: "Team Puzzle Talk, I am the Leader (Memimpin instruksi)." },
+                        { topic: "Tidak & Tolong", objective: "Mempraktikkan cara menolak & minta tolong.", activity: "Emotion Cards, Latihan kalimat 'Aku merasa... karena...'." },
+                        { topic: "Simulasi Hari Pertama Sekolah", objective: "Simulasi mengatasi gugup di tempat baru.", activity: "Roleplay menolak ajakan sopan, The Help Hero (Minta bantuan)." },
+                        { topic: "Project Planning", objective: "Mendiskusikan ide dalam kelompok kecil.", activity: "Simulasi 'Back to School', Desk Mate Intro (Kenalan sebangku)." },
+                        { topic: "Mini Presentation", objective: "Praktik presentasi hasil karya kelompok.", activity: "Brainstorming Fun, Idea Drawing (Menggambar rencana)." },
+                        { topic: "Praktik Menjawab", objective: "Praktik menjawab pertanyaan dengan rileks.", activity: "Group Show (Presentasi tugas), We Made This! (Menjelaskan karya)." },
+                        { topic: "Gladi Resik", objective: "Simulasi latihan untuk mini show.", activity: "The Interview Seat, Calm Answer (Teknik berpikir)." },
+                        { topic: "Gladi Resik", objective: "Simulasi latihan naskah dialog.", activity: "Persiapan project in pairs (dialog perkenalan & small talk)." },
+                        { topic: "SHOWCASE DAY", objective: "Tampil pertunjukan perkenalan di depan audiens.", activity: "Main Event: Penampilan Kelompok, Pembagian Sertifikat." }
+                    ]
                 },
                 {
-                level: 2,
-                title: "Jago Storytelling",
-                focus: "Bercerita ekspresif, melatih imajinasi, & bicara alami.",
-                color: "bg-pink-100 border-pink-400 text-pink-900",
-                btnColor: "bg-pink-200 hover:bg-pink-300 text-pink-900",
-                icon: <BookOpen className="w-6 h-6 text-pink-700" />,
-                syllabus: [
-                    "Mengenal Dasar Storytelling", "Intonasi Dasar", "Voice Flow", "Face & Gesture",
-                    "Imagination Play", "Natural Talking", "Opening & Problem", "Solution & Closing",
-                    "Membuat Skrip Sederhana", "Picture Talk", "Co-Storytelling", "Shared Rhythm",
-                    "Emotional Voice", "Story Drama", "Body Language Final", "Suara Karakter",
-                    "Cerita secara Spontan", "Story Relay", "Team Storybuilding", "Properti Sederhana",
-                    "Persiapan Pentas", "Gladi Resik 1", "Gladi Resik 2", "Performance Day"
-                ]
+                    level: 2,
+                    title: "Jago Storytelling",
+                    focus: "Bercerita ekspresif, melatih imajinasi, & bicara alami.",
+                    color: "bg-pink-100 border-pink-400 text-pink-900",
+                    btnColor: "bg-pink-200 hover:bg-pink-300 text-pink-900",
+                    icon: <BookOpen className="w-6 h-6 text-pink-700" />,
+                    syllabus: [
+                        { topic: "Mengenal Dasar Storytelling", objective: "Membaca paragraf dengan gaya antusias.", activity: "Game 'Tebak Judul', Bedanya Storytelling vs Baca Biasa." },
+                        { topic: "Intonasi Dasar", objective: "Mengatur intonasi suara naik dan turun.", activity: "Praktik kalimat 'Tolong! Ada Buaya!' (Datar vs Heboh)." },
+                        { topic: "Voice Flow", objective: "Menjaga kelancaran bicara tanpa 'ee...'.", activity: "Game 'Bicara 30 Detik', Teknik napas perut." },
+                        { topic: "Face & Gesture", objective: "Bercerita dengan ekspresi wajah & gestur tubuh.", activity: "Game 'Tebak Wajah', Praktik Gesture tangan besar vs kecil." },
+                        { topic: "Imagination Play", objective: "Menggambarkan benda yang tidak ada (Visualisasi).", activity: "Game 'Putar Roda', Menggunakan kata sifat (dingin, wangi, seram)." },
+                        { topic: "Natural Talking", objective: "Berbicara secara alami seperti ke teman.", activity: "Ngobrol santai, Membaca dongeng dengan natural (tidak kaku)." },
+                        { topic: "Opening & Problem", objective: "Membuat pendahuluan & konflik sederhana.", activity: "Mengenalkan Struktur Awal-Tengah-Akhir, Brainstorm ide cerita." },
+                        { topic: "Solution & Closing", objective: "Melanjutkan draft cerita & menentukan ending.", activity: "Game 'Menebak Akhir Film', Menyusun konflik & klimaks." },
+                        { topic: "Membuat Skrip Sederhana", objective: "Menyusun cerita sederhana sendiri.", activity: "Game 'Puzzle Cerita', Menulis draft cerita menjadi satu kesatuan." },
+                        { topic: "Picture Talk", objective: "Bercerita berdasarkan alat bantu gambar.", activity: "Game 'Apa yang Kamu Lihat?', Membacakan cergam." },
+                        { topic: "Co-Storytelling", objective: "Bekerja sama bercerita dalam kelompok.", activity: "Roleplay berpasangan, membagi peran bacaan." },
+                        { topic: "Shared Rhythm", objective: "Menjaga tempo bicara dalam cerita kelompok.", activity: "Latihan dialog bergantian tanpa tumpang tindih." },
+                        { topic: "Emotional Voice", objective: "Menirukan emosi dalam setiap kata.", activity: "Game 'Satu Kata Lima Emosi', Membaca dialog dengan emosi." },
+                        { topic: "Story Drama", objective: "Akting pendek di dalam cerita.", activity: "Game 'Patung Emosi', Drama pendek adegan (misal: mengutuk)." },
+                        { topic: "Body Language Final", objective: "Menggunakan seluruh tubuh (kaki, bahu, kepala).", activity: "Game 'Jalan Seperti Tokoh', Simulasi gerak di atas kapal." },
+                        { topic: "Suara Karakter", objective: "Membuat suara tokoh yang unik & berbeda.", activity: "Tebak suara kartun, Story Character Battle (Adu suara)." },
+                        { topic: "Cerita secara Spontan", objective: "Bercerita spontan dari kata acak.", activity: "Game 'Kotak Misteri', Teknik 'Yes, And...' (Lanjut cerita)." },
+                        { topic: "Story Relay", objective: "Cerita bersambung antar teman.", activity: "Game 'Sambung Kata', Story Relay sekelas (keroyokan)." },
+                        { topic: "Team Storybuilding", objective: "Membangun cerita kelompok secara utuh.", activity: "Game 'Grup Kompak', Pembagian plot per anak." },
+                        { topic: "Properti Sederhana", objective: "Membuat & menggunakan alat bantu panggung.", activity: "Mewarnai/membuat bando, Latihan cerita dengan properti." },
+                        { topic: "Persiapan Pentas", objective: "Latihan panggung utuh dengan musik.", activity: "Mengenal backsound, Tampil utuh dengan iringan musik." },
+                        { topic: "Gladi Resik", objective: "Perbaikan detail (artikulasi & durasi).", activity: "Review catatan, Tips improvisasi, Tampil mandiri 2-3 menit." },
+                        { topic: "Performance Day", objective: "Showcase: Storytelling Performance Day.", activity: "The Grand Show: Penampilan final di depan orang tua & juri." },
+                        { topic: "Evaluasi & Kelulusan", objective: "Evaluasi akhir dan perayaan kelulusan.", activity: "Nonton video penampilan, Peer Review, Penyerahan Sertifikat." }
+                    ]
                 },
                 {
-                level: 3,
-                title: "Jago Presentasi",
-                focus: "Presentasi kelompok, leadership kecil, & komunikasi tim.",
-                color: "bg-blue-100 border-blue-400 text-blue-900",
-                btnColor: "bg-blue-200 hover:bg-blue-300 text-blue-900",
-                icon: <Users className="w-6 h-6 text-blue-700" />,
-                syllabus: [
-                    "Teamwork Basics", "Role Playing", "Listening Skill", "The Opening",
-                    "The Content", "The Closing", "Visual Aid Intro", "Explain This Picture",
-                    "Poster Presentation", "Turn-Taking", "Presentation Flow", "Team Interaction",
-                    "Audience Handling", "Q&A Session", "Mini Group Show", "Gesture Upgrade",
-                    "Vocal Upgrade", "Peer Evaluation", "Project Planning", "Advanced Collab",
-                    "Dress Rehearsal", "Final Rehearsal", "Group Showcase", "Graduation & Eval"
-                ]
+                    level: 3,
+                    title: "Jago Presentasi",
+                    focus: "Presentasi kelompok, leadership kecil, & komunikasi tim.",
+                    color: "bg-blue-100 border-blue-400 text-blue-900",
+                    btnColor: "bg-blue-200 hover:bg-blue-300 text-blue-900",
+                    icon: <Users className="w-6 h-6 text-blue-700" />,
+                    syllabus: [
+                        { topic: "Teamwork Basics", objective: "Mengenal cara bekerja sama & menghargai pendapat.", activity: "Game 'Menara Kerjasama', Diskusi nama tim & yel-yel." },
+                        { topic: "Role Playing", objective: "Memahami peran (Speaker, Leader, Timekeeper).", activity: "Game 'Siapa Melakukan Apa?', Simulasi bagi tugas topik 'Makanan Sehat'." },
+                        { topic: "Listening Skill", objective: "Mendengarkan teman saat sedang berbicara.", activity: "Game 'Echo Game', Estafet informasi dalam kelompok." },
+                        { topic: "The Opening", objective: "Membuka presentasi dengan salam & perkenalan.", activity: "Rumus Opening (Salam-Nama-Topik), Latihan pembukaan." },
+                        { topic: "The Content", objective: "Menyusun isi presentasi secara sederhana.", activity: "Game 'Ada Apa di Dalamnya?', Menyusun 3 poin utama informasi." },
+                        { topic: "The Closing", objective: "Menutup presentasi dengan kesimpulan & salam.", activity: "Game 'Simpul Tali', Latihan penutupan kompak." },
+                        { topic: "Visual Aid Intro", objective: "Mengenal alat bantu (Poster/Gambar).", activity: "Game 'Tebak Gambar Setengah', Memilih gambar yang cocok." },
+                        { topic: "Explain This Picture", objective: "Menjelaskan gambar dengan kalimat jelas.", activity: "Game 'Deskripsi Buta', Latihan menunjuk gambar (tidak membelakangi)." },
+                        { topic: "Poster Presentation", objective: "Presentasi sederhana menggunakan poster.", activity: "Game 'Kurator Galeri', Simulasi presentasi poster karya tim." },
+                        { topic: "Turn-Taking", objective: "Bergantian bicara dengan rapi dan mulus.", activity: "Game 'Oper Bola Bicara', Latihan kalimat transisi ('Selanjutnya...')." },
+                        { topic: "Presentation Flow", objective: "Menjaga tempo presentasi agar tidak buru-buru.", activity: "Game 'Lampu Merah Kuning Hijau', Mengatur jeda antar pembicara." },
+                        { topic: "Team Interaction", objective: "Saling mendukung saat teman lupa bicara.", activity: "Game 'Bantu Temanmu', Teknik kode bantuan, Simulasi 'Lupa'." },
+                        { topic: "Audience Handling", objective: "Cara menatap & menyapa audiens besar.", activity: "Game 'Mencari Mata', Teknik menyebar pandangan ke seluruh ruangan." },
+                        { topic: "Q&A Session", objective: "Cara menjawab pertanyaan sederhana.", activity: "Simulasi tanya jawab: 'Pertanyaan bagus!', 'Terima kasih'." },
+                        { topic: "Mini Group Show", objective: "Presentasi mini kelompok untuk melatih mental.", activity: "Game 'Debat Seru' (Es Krim vs Cokelat), Presentasi 2 menit." },
+                        { topic: "Gesture Upgrade", objective: "Menggunakan bahasa tubuh yang meyakinkan.", activity: "Game 'Robot vs Manusia', Power Pose (Tangan terbuka)." },
+                        { topic: "Vocal Upgrade", objective: "Mengatur volume & penekanan kata (Intonasi).", activity: "Game 'Volume Radio', Menekankan kata penting, Bicara mantap." },
+                        { topic: "Peer Evaluation", objective: "Belajar memberikan masukan positif ke teman.", activity: "Game 'Kirim Surat Pujian', Teknik Sandwich Feedback." },
+                        { topic: "Project Planning", objective: "Menyusun materi final kelompok.", activity: "Game 'Brainstorming Fun', Pemilihan topik & tugas akhir." },
+                        { topic: "Advanced Collab", objective: "Presentasi silang antar kelompok untuk revisi.", activity: "Game 'Komentar Kilat', Presentasi & saling revisi." },
+                        { topic: "Dress Rehearsal", objective: "Simulasi panggung dengan properti lengkap.", activity: "Pemanasan yel-yel, Geladi bersih sesuai urutan." },
+                        { topic: "Final Rehearsal", objective: "Latihan terakhir dengan backsound/musik.", activity: "Latihan napas, Run-through terakhir tanpa interupsi." },
+                        { topic: "Group Showcase", objective: "Team Presentation Day (Showcase Utama).", activity: "Penampilan Project Kelompok di depan audiens." },
+                        { topic: "Graduation & Eval", objective: "Evaluasi akhir dan perayaan kelulusan.", activity: "Nonton video, Refleksi diri, Penyerahan Sertifikat Level 3." }
+                    ]
                 },
                 {
-                level: 4,
-                title: "Jago Storytelling 2.0",
-                focus: "Memimpin teman, instruksi, & problem solving.",
-                color: "bg-purple-100 border-purple-400 text-purple-900",
-                btnColor: "bg-purple-200 hover:bg-purple-300 text-purple-900",
-                icon: <Megaphone className="w-6 h-6 text-purple-700" />,
-                syllabus: [
-                    "Introduction: I am a Story Leader", "Voice Power (Volume & Kejelasan)", "Body & Face (Ekspresi)", "Group Formation (Team Up)",
-                    "Choosing The Story", "Problem & Solution (Plot)", "Script Reading", "Building Chemistry",
-                    "Character Deep Dive", "Stage Mapping (Blocking)", "Action & Reaction", "Transitions",
-                    "Props Making", "Using Props", "Improv (Handling Mistakes)", "Team Support",
-                    "Opening & Closing Polish", "Full Run-Through", "Audience Etiquette", "Costume Check",
-                    "Gladi Resik 1", "Gladi Resik 2", "Gladi Resik 3", "SHOWCASE DAY"
-                ]
+                    level: 4,
+                    title: "Jago Storytelling 2.0",
+                    focus: "Memimpin teman, instruksi, & problem solving.",
+                    color: "bg-purple-100 border-purple-400 text-purple-900",
+                    btnColor: "bg-purple-200 hover:bg-purple-300 text-purple-900",
+                    icon: <Megaphone className="w-6 h-6 text-purple-700" />,
+                    syllabus: [
+                        { topic: "Introduction: I am a Story Leader", objective: "Menjelaskan peran pencerita & perkenalan antusias.", activity: "Yel-yel 'Berani, Seru, Juara!', Ice Breaking 'Bola Nama', Bedah Dongeng." },
+                        { topic: "Voice Power", objective: "Memproyeksikan suara lantang & artikulasi jelas.", activity: "Senam A-I-U-E-O, Game 'Remote TV Imaji' (Volume 1-5), Teriak 'Halo Lembah'." },
+                        { topic: "Body & Face", objective: "Menunjukkan mimik wajah sesuai emosi cerita.", activity: "Pemanasan 'Shake it off', Game 'Topeng Wajah' (Ubah ekspresi cepat), Pantomim." },
+                        { topic: "Group Formation", objective: "Beradaptasi & bekerja sama dalam kelompok.", activity: "Game 'Puzzle Teman', Menentukan Nama Tim & Salam Khas." },
+                        { topic: "Choosing The Story", objective: "Berdiskusi menyepakati satu cerita & peran.", activity: "Game 'Menu Cerita' (Pilih opsi), Audisi Peran (Negosiasi damai)." },
+                        { topic: "Problem & Solution", objective: "Identifikasi masalah utama & pesan moral.", activity: "Game 'Detektif Cerita', Membuat 'Peta Cerita' (Awal-Tengah-Akhir) di karton." },
+                        { topic: "Script Reading", objective: "Membaca naskah dengan kelancaran & pelafalan.", activity: "Senam Lidah (Tongue Twister), Reading Circle (Lingkari dialog & baca)." },
+                        { topic: "Building Chemistry", objective: "Merespon dialog lawan main tanpa jeda lama.", activity: "Game 'Cermin Berpasangan', Latihan 'Dialog Mata' (Tanpa lihat kertas)." },
+                        { topic: "Character Deep Dive", objective: "Memerankan sifat karakter (suara & gestur) konsisten.", activity: "Jalan keliling gaya karakter, 'Kursi Panas' (Wawancara tokoh)." },
+                        { topic: "Stage Mapping", objective: "Menempatkan diri di panggung (blocking).", activity: "Game 'Kapten Berkata' (Kiri/Kanan), Menandai 'Rumah Tokoh' dengan selotip." },
+                        { topic: "Action & Reaction", objective: "Memberikan reaksi wajah/tubuh saat lawan bicara.", activity: "Game 'Patung Kaget', Latihan 'Jangan Bengong' (Reaksi diam)." },
+                        { topic: "Transitions", objective: "Masuk & keluar panggung tertib dalam karakter.", activity: "Game 'Lampu Merah Hijau', Latihan 'Pintu Ajaib' (Keluar-Masuk rapi)." },
+                        { topic: "Props Making", objective: "Kerjasama membuat properti dari kertas/kardus.", activity: "Bengkel Kreatif (Bando, tongkat, pedang), Membersihkan sisa sampah." },
+                        { topic: "Using Props", objective: "Berakting dengan properti tanpa menutupi wajah.", activity: "Latihan 'Jangan Tutup Muka', Oper-operan barang di panggung." },
+                        { topic: "Improv (Handling Mistakes)", objective: "Tetap tenang & lanjut cerita saat ada kesalahan.", activity: "Tantangan 'OOPS!' (Gangguan sengaja), Improvisasi (Pura-pura)." },
+                        { topic: "Team Support", objective: "Membantu teman tim yang lupa naskah.", activity: "Simulasi lupa nama, Latihan 'Pancingan Teman' (Backup dead air)." },
+                        { topic: "Opening & Closing Polish", objective: "Salam pembuka & bowing penutup kompak.", activity: "Latihan senyum, 'Koreografi Hormat' (Bowing serentak)." },
+                        { topic: "Full Run-Through", objective: "Menampilkan cerita utuh tanpa interupsi.", activity: "Latihan Non-Stop (Guru diam mencatat), Feedback sandwich." },
+                        { topic: "Audience Etiquette", objective: "Menjadi penonton baik & memberi apresiasi.", activity: "Simulasi Penonton (Tim A tampil, Tim B nonton), Peer Review." },
+                        { topic: "Costume Check", objective: "Bergerak nyaman menggunakan kostum lengkap.", activity: "Fashion Show Dadakan, 'Gladi Gerak' (Adegan sulit dengan kostum)." },
+                        { topic: "Gladi Resik 1", objective: "Simulasi total hari-H dengan seluruh elemen.", activity: "Simulasi Total (Musik, Kostum, Blocking), Nonton rekaman evaluasi." },
+                        { topic: "Gladi Resik 2", objective: "Simulasi total hari-H (Pemantapan).", activity: "Run-through ulang, Fokus perbaikan detail." },
+                        { topic: "Gladi Resik 3", objective: "Simulasi total hari-H (Final).", activity: "Run-through final, Motivasi mental." },
+                        { topic: "SHOWCASE DAY", objective: "Menampilkan pertunjukan dongeng di depan audiens.", activity: "The Festival: Penampilan, Foto, Grand Bowing." }
+                    ]
                 },
                 {
-                level: 5,
-                title: "Jago MC & Pidato",
-                focus: "Tampil di event publik, panggung besar & audiens baru.",
-                color: "bg-teal-100 border-teal-400 text-teal-900",
-                btnColor: "bg-teal-200 hover:bg-teal-300 text-teal-900",
-                icon: <Crown className="w-6 h-6 text-teal-700" />,
-                syllabus: [
-                    "Introduction: Host vs Speaker", "The Foundation: Confidence", "Vocal Power: Projection", "Speech Lab 1: Topic Selection",
-                    "Speech Lab 2: The Hamburger", "Speech Lab 3: The Hook", "Drafting Script (MC & Speech)", "MC Focus: Bridging & Energy",
-                    "Speaker Focus: Body Language", "Tools: Mic & Cue Cards", "Technique: Eye Contact", "Technique: Intonation & Pause",
-                    "MC & Speaker Collaboration", "Interaction Skills", "Improvisasi (Anti-Blank)", "Full Rehearsal: MC Team",
-                    "Full Rehearsal: Speaker Team", "Handling Disturbance", "Costume & Style Check", "Stage Simulation (Audience)",
-                    "Gladi Resik 1", "Gladi Resik 2", "Gladi Resik 3", "SHOWCASE DAY"
-                ]
+                    level: 5,
+                    title: "Jago MC & Pidato",
+                    focus: "Tampil di event publik, panggung besar & audiens baru.",
+                    color: "bg-teal-100 border-teal-400 text-teal-900",
+                    btnColor: "bg-teal-200 hover:bg-teal-300 text-teal-900",
+                    icon: <Crown className="w-6 h-6 text-teal-700" />,
+                    syllabus: [
+                        { topic: "Host vs Speaker", objective: "Membedakan peran MC & Speaker, memilih minat.", activity: "Game 'Switch!' (Gaya MC vs Pidato), Voting minat awal." },
+                        { topic: "The Foundation: Confidence", objective: "Berdiri di 'Center Stage' tanpa gugup.", activity: "Senam 'Buang Malu', Challenge 'Patung Panggung' (Diam 30 detik)." },
+                        { topic: "Vocal Power: Projection", objective: "Memproyeksikan suara lantang (suara perut).", activity: "Latihan napas perut, Challenge 'Teriak di Bukit' (Jarak jauh)." },
+                        { topic: "Topic Selection", objective: "Menentukan topik pidato menarik & personal.", activity: "Brainstorming 'Peta Pikiran' (Speaker: Hobi/Isu, MC: Tema Acara)." },
+                        { topic: "The Hamburger", objective: "Menyusun struktur (Pembuka-Isi-Penutup).", activity: "Analogi Hamburger, Menulis kerangka/rundown di lembar kerja." },
+                        { topic: "The Hook (Opening)", objective: "Membuat kalimat pembuka menarik.", activity: "Teknik Opening (Pertanyaan, Fakta, Kutipan), Praktik intro." },
+                        { topic: "Drafting Script", objective: "Menulis naskah lengkap dengan bahasa tutur.", activity: "Silent Writing (Bengkel Naskah), Cek lidah (ubah kata sulit)." },
+                        { topic: "MC Focus: Bridging", objective: "MC: Menjaga energi & menyambungkan segmen.", activity: "Latihan 'Jembatan Kata', Menghindari dead air, Tepuk tangan heboh." },
+                        { topic: "Speaker: Body Language", objective: "Speaker: Menggunakan tangan & ekspresi.", activity: "Game 'Tangan Bicara' (Gestur jujur/semangat), Menandai naskah." },
+                        { topic: "Tools: Mic & Cue Cards", objective: "Menggunakan mikrofon & kartu catatan benar.", activity: "Simulasi Alat (Jarak mic 3 jari), Teknik pegang Cue Card." },
+                        { topic: "Eye Contact", objective: "Melakukan kontak mata menyebar (Sapu Jagat).", activity: "Game 'Lighthouse' (Tatap teman kiri-tengah-kanan 3 detik)." },
+                        { topic: "Intonation & Pause", objective: "Mengatur nada & jeda agar tidak monoton.", activity: "Menandai naskah (Keras/Pelan/Stop), Baca dengan 'rasa'." },
+                        { topic: "MC & Speaker Collab", objective: "Kolaborasi transisi panggung mulus.", activity: "Latihan 'Tektokan Panggung' (Panggil-Masuk-Salaman-Mundur)." },
+                        { topic: "Interaction Skills", objective: "Menyisipkan interaksi dengan penonton.", activity: "Menambah pertanyaan ke audiens, Latihan menunggu respon." },
+                        { topic: "Improvisasi (Anti-Blank)", objective: "Tetap tenang saat lupa naskah.", activity: "Game 'The Show Must Go On', Teknik Keywords, Mengarang sambungan." },
+                        { topic: "Full Rehearsal: MC Team", objective: "MC memandu acara dari awal-akhir.", activity: "MC Duty (Memandu acara imajiner), Speaker menyimak." },
+                        { topic: "Full Rehearsal: Speaker", objective: "Speaker menyampaikan pidato utuh.", activity: "Pidato Maraton (Cek durasi & kelengkapan struktur)." },
+                        { topic: "Handling Disturbance", objective: "Tetap fokus bicara meski ada gangguan.", activity: "Challenge 'Uji Nyali Panggung' (Diganggu suara/tepuk tangan)." },
+                        { topic: "Costume & Style Check", objective: "Memilih pakaian rapi & mendukung PD.", activity: "Fashion Show & Pose, Cek kenyamanan baju/sepatu." },
+                        { topic: "Stage Simulation", objective: "Tampil di depan orang asing (Tamu).", activity: "Mini Showcase (Undang guru lain), Latihan mental ditonton orang baru." },
+                        { topic: "Gladi Resik 1", objective: "Menjalankan acara tanpa henti (Run Through).", activity: "Simulasi total (Mic/Musik), Rekam video, Evaluasi mandiri." },
+                        { topic: "Gladi Resik 2", objective: "Pemantapan alur & teknis.", activity: "Run through ulang, Perbaikan flow." },
+                        { topic: "Gladi Resik 3", objective: "Final check sebelum hari H.", activity: "Run through final, Motivasi." },
+                        { topic: "SHOWCASE DAY", objective: "Tampil sebagai MC/Speaker di publik.", activity: "Little Orator Show: MC Membuka, Speaker Tampil, Apresiasi." }
+                    ]
                 }
             ];
 
@@ -320,7 +407,7 @@
                         <p className="text-gray-600 max-w-2xl mx-auto">Kurikulum bertahap yang disesuaikan dengan kebutuhan dan perkembangan anak.</p>
                     </div>
 
-                    <div className="max-w-5xl mx-auto space-y-6">
+                    <div className="max-w-6xl mx-auto space-y-6">
                         {levelsData.map((item, index) => (
                         <div key={index} className={`rounded-3xl border-2 transition-all duration-300 ${activeLevel === index ? 'shadow-xl scale-[1.01]' : 'hover:scale-[1.005] shadow-sm'} ${item.color.replace('text-', 'border-').split(' ')[1]} bg-white overflow-hidden`}>
                             <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-center justify-between">
@@ -353,17 +440,32 @@
                             </div>
                             
                             {/* Accordion Content (Syllabus Grid) */}
-                            <div className={`transition-all duration-500 ease-in-out ${activeLevel === index ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                            <div className={`transition-all duration-500 ease-in-out ${activeLevel === index ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                             <div className="px-6 pb-8 md:px-8">
                                 <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                                <h4 className="font-bold text-gray-700 mb-4 flex items-center gap-2">
-                                    <Calendar className="w-4 h-4" /> 24 Pertemuan (Syllabus):
+                                <h4 className="font-bold text-gray-700 mb-6 flex items-center gap-2 text-lg">
+                                    <Calendar className="w-5 h-5 text-indigo-500" /> Detail 24 Pertemuan (Syllabus):
                                 </h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-                                    {item.syllabus.map((topic, i) => (
-                                    <div key={i} className="flex items-start gap-3 text-sm text-gray-600 py-1 border-b border-gray-100 last:border-0">
-                                        <span className="font-mono font-bold text-indigo-400 w-6 flex-shrink-0 text-right">{i + 1}.</span>
-                                        <span>{topic}</span>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {item.syllabus.map((session, i) => (
+                                    <div key={i} className="bg-white p-4 rounded-xl border border-slate-200 hover:shadow-md transition-shadow">
+                                        <div className="flex justify-between items-center mb-2">
+                                            <span className={`text-xs font-black uppercase tracking-wider px-2 py-1 rounded ${item.color.split(' ')[0]} ${item.color.split(' ')[2]}`}>
+                                                Pertemuan {i + 1}
+                                            </span>
+                                        </div>
+                                        <h5 className="font-bold text-gray-800 mb-2 text-lg leading-tight">{session.topic}</h5>
+                                        
+                                        <div className="space-y-2">
+                                            <div>
+                                                <p className="text-[10px] uppercase font-bold text-gray-400 mb-0.5">Tujuan Belajar:</p>
+                                                <p className="text-sm text-gray-600 leading-snug">{session.objective}</p>
+                                            </div>
+                                            <div className="pt-2 border-t border-dashed border-gray-100">
+                                                <p className="text-[10px] uppercase font-bold text-gray-400 mb-0.5">Aktivitas Seru:</p>
+                                                <p className="text-xs text-gray-500 italic bg-slate-50 p-2 rounded">{session.activity}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     ))}
                                 </div>
@@ -380,7 +482,7 @@
                 <footer className="bg-gray-900 text-white py-20 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                     <div className="container mx-auto px-6 text-center relative z-10">
-                    <h2 className="text-4xl md:text-5xl font-black mb-8">Siap Jadi <span className="text-yellow-400">Jagoan Cerita?</span></h2>
+                    <h2 className="text-4xl md:text-5xl font-black mb-8">Siap <span className="text-yellow-400">Mahir Berbicara di Depan Umum?</span></h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                         Biaya investasi terjangkau untuk 24 pertemuan yang mengubah kepercayaan diri anak.
                     </p>
