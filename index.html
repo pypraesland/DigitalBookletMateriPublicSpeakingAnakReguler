@@ -21,14 +21,14 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
-            overflow: hidden; /* Prevent default scroll */
             background-color: #FFFBEB; /* Soft yellow base */
         }
-        /* Hide Scrollbar */
+        
+        /* Hide Scrollbar but allow scrolling */
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Custom Scrollbar for Content */
+        /* Custom Scrollbar for Content (Desktop) */
         .custom-scroll::-webkit-scrollbar { width: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #FCD34D; border-radius: 10px; border: 2px solid rgba(255,255,255,0.5); }
@@ -284,8 +284,8 @@
             </div>
         );
 
-        const Slide = ({ children, className, bgClass }) => (
-            <div className={`w-screen h-screen flex-shrink-0 overflow-hidden relative ${bgClass}`}>
+        const Slide = ({ children, className, bgClass, id }) => (
+            <div id={id} className={`w-screen flex-shrink-0 relative ${bgClass} md:h-screen md:overflow-hidden min-h-screen`}>
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-pattern-dots opacity-30 pointer-events-none"></div>
                 
@@ -311,18 +311,20 @@
 
             useEffect(() => {
                 const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowRight') scrollToPage(currentPage + 1);
-                    if (e.key === 'ArrowLeft') scrollToPage(currentPage - 1);
+                    if (window.innerWidth >= 768) { // Only enable keyboard nav on desktop
+                        if (e.key === 'ArrowRight') scrollToPage(currentPage + 1);
+                        if (e.key === 'ArrowLeft') scrollToPage(currentPage - 1);
+                    }
                 };
                 window.addEventListener('keydown', handleKeyDown);
                 return () => window.removeEventListener('keydown', handleKeyDown);
             }, [currentPage]);
 
             return (
-                <div className="w-screen h-screen overflow-hidden relative">
+                <div className="w-full relative overflow-x-hidden md:h-screen md:overflow-hidden">
                     
-                    {/* Floating Nav Buttons */}
-                    <div className="absolute bottom-6 right-6 z-50 flex gap-3">
+                    {/* Floating Nav Buttons (Desktop Only) */}
+                    <div className="hidden md:flex absolute bottom-6 right-6 z-50 gap-3">
                         <button 
                             onClick={() => scrollToPage(currentPage - 1)}
                             disabled={currentPage === 0}
@@ -339,8 +341,8 @@
                         </button>
                     </div>
 
-                    {/* Fun Progress Bar */}
-                    <div className="absolute bottom-8 left-6 z-50 flex gap-2 p-2 bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-white/50">
+                    {/* Fun Progress Bar (Desktop Only) */}
+                    <div className="hidden md:flex absolute bottom-8 left-6 z-50 gap-2 p-2 bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-white/50">
                         {Array.from({ length: totalPages }).map((_, idx) => (
                             <div 
                                 key={idx}
@@ -354,19 +356,21 @@
                         ))}
                     </div>
 
-                    {/* Slider Container */}
+                    {/* Slider Container (Desktop Horizontal / Mobile Vertical Stack) */}
                     <div 
-                        className="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-                        style={{ transform: `translateX(-${currentPage * 100}vw)` }}
+                        className="flex flex-col md:flex-row h-auto md:h-full md:transition-transform md:duration-700 md:ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                        style={{ 
+                            transform: window.innerWidth >= 768 ? `translateX(-${currentPage * 100}vw)` : 'none'
+                        }}
                     >
                         
                         {/* PAGE 1: COVER */}
-                        <Slide bgClass="bg-gradient-to-br from-yellow-200 via-orange-100 to-pink-200" className="flex flex-col justify-center items-center text-center px-4 md:px-6">
+                        <Slide bgClass="bg-gradient-to-br from-yellow-200 via-orange-100 to-pink-200" className="flex flex-col justify-center items-center text-center px-4 md:px-6 py-10 md:py-0">
                             <div className="absolute top-6 left-6 animate-float z-50">
                                 <Logo />
                             </div>
                             
-                            <div className="max-w-3xl relative mt-10 md:mt-0">
+                            <div className="max-w-3xl relative mt-16 md:mt-0">
                                 {/* Decor Icons */}
                                 <div className="absolute -top-16 -left-16 text-yellow-400 animate-float-delayed hidden md:block"><Star className="w-20 h-20 fill-current"/></div>
                                 <div className="absolute -bottom-8 -right-16 text-pink-400 animate-float hidden md:block"><Sparkles className="w-24 h-24"/></div>
@@ -382,8 +386,14 @@
                                     Petualangan seru 5 level untuk mencetak <span className="bg-yellow-300 px-2 rounded transform inline-block rotate-1 text-yellow-900 border-2 border-yellow-500">Generasi Juara</span> yang berani bicara! 🚀
                                 </p>
                                 <button 
-                                    onClick={() => scrollToPage(1)}
-                                    className="bg-white text-indigo-600 font-black py-4 px-10 rounded-full shadow-[0_12px_25px_rgba(79,70,229,0.3)] hover:shadow-[0_15px_35px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all text-lg flex items-center gap-3 mx-auto border-4 border-indigo-100"
+                                    onClick={() => {
+                                        if (window.innerWidth >= 768) {
+                                            scrollToPage(1);
+                                        } else {
+                                            document.getElementById('info-section').scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    className="bg-white text-indigo-600 font-black py-4 px-10 rounded-full shadow-[0_12px_25px_rgba(79,70,229,0.3)] hover:shadow-[0_15px_35px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all text-lg flex items-center gap-3 mx-auto border-4 border-indigo-100 cursor-pointer"
                                 >
                                     Mulai Petualangan <ChevronRight className="w-6 h-6" />
                                 </button>
@@ -391,8 +401,8 @@
                         </Slide>
 
                         {/* PAGE 2: INFO */}
-                        <Slide bgClass="bg-gradient-to-tr from-cyan-100 via-blue-50 to-indigo-100" className="flex items-center justify-center px-4 md:px-6">
-                            <div className="max-w-6xl w-full h-full flex flex-col justify-center pb-16">
+                        <Slide id="info-section" bgClass="bg-gradient-to-tr from-cyan-100 via-blue-50 to-indigo-100" className="flex items-center justify-center px-4 md:px-6 py-10 md:py-0">
+                            <div className="max-w-6xl w-full h-full flex flex-col justify-center pb-0 md:pb-16">
                                 <div className="text-center mb-10 md:mb-12 relative">
                                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-16 bg-yellow-300 -rotate-2 rounded-full opacity-50 blur-xl"></div>
                                     <h2 className="text-4xl md:text-5xl font-black text-indigo-900 mb-3 relative z-10">Informasi Program</h2>
@@ -418,7 +428,7 @@
                                         </div>
                                         <h3 className="text-2xl font-black text-gray-800 mb-2 group-hover:text-pink-500 transition-colors">Kelas Eksklusif</h3>
                                         <p className="text-base text-gray-500 leading-relaxed font-bold">
-                                            Hanya <span className="text-pink-500">10 siswa</span> per kelas. Guru fokus membimbing setiap anak secara personal.
+                                            Hanya <span className="text-pink-500">8 siswa</span> per kelas. Guru fokus membimbing setiap anak secara personal.
                                         </p>
                                     </div>
 
@@ -440,9 +450,9 @@
 
                         {/* PAGE 3-7: LEVELS */}
                         {levelsData.map((level, index) => (
-                            <Slide key={index} bgClass={`bg-gradient-to-br ${level.theme}`} className="flex flex-col h-full">
+                            <Slide key={index} bgClass={`bg-gradient-to-br ${level.theme}`} className="flex flex-col h-full py-10 md:py-0">
                                 {/* Header */}
-                                <div className="pt-6 pb-2 px-6 md:px-12 flex-shrink-0 z-20">
+                                <div className="md:pt-6 pb-2 px-4 md:px-12 flex-shrink-0 z-20">
                                     <div className="bg-white/90 backdrop-blur-xl rounded-[2rem] p-4 md:p-6 shadow-xl border-4 border-white flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
                                         <div className="flex items-center gap-4 md:gap-6">
                                             <div className={`w-16 h-16 md:w-20 md:h-20 rounded-3xl ${level.iconBg} flex items-center justify-center shadow-lg transform -rotate-6 border-4 border-white shrink-0`}>
@@ -463,11 +473,11 @@
                                             <p className={`text-3xl font-black ${level.accent}`}>24 Pertemuan</p>
                                         </div>
                                     </div>
-                                    <p className="text-gray-600 font-bold text-sm leading-tight mt-2 md:hidden px-2">{level.focus}</p>
+                                    <p className="text-gray-600 font-bold text-sm leading-tight mt-2 md:hidden px-2 text-center md:text-left bg-white/50 p-2 rounded-lg">{level.focus}</p>
                                 </div>
 
                                 {/* Content Grid */}
-                                <div className="flex-1 overflow-y-auto custom-scroll px-4 md:px-12 pb-24 pt-4">
+                                <div className="flex-1 overflow-y-auto custom-scroll px-4 md:px-12 pb-10 md:pb-24 pt-4">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                                         {level.syllabus.map((session, sIdx) => (
                                             <div key={sIdx} className={`bg-white rounded-3xl p-5 border-2 ${level.border} shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative overflow-hidden group min-h-[180px]`}>
